@@ -1,6 +1,7 @@
 'use server'
 import connectDB from "@/config/database"
 import Property from "@/models/Property"
+import Message from "@/models/Message"
 import { getSessionUser } from "@/utils/getSessionUser"
 import { revalidatePath } from "next/cache"
 
@@ -20,6 +21,8 @@ async function deleteProperty(PropertyId) {
     if (property.owner.toString() !== userId) {
         throw new Error('Unauthorized.')
     }
+
+    await Message.deleteMany({ property: PropertyId });
 
     await property.deleteOne()
     revalidatePath('/', 'layout')

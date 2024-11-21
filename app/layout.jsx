@@ -5,17 +5,21 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import '@/styles/style.css'
 
-export const metadata = {
-  title: 'Course',
-};
 
 const Layout = ({ children }) => {
   return (
-    <SessionProvider>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </SessionProvider>
+    <html lang="en">
+      <head>
+        <title>Course</title>
+      </head>
+      <body>
+        <SessionProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </SessionProvider>
+      </body>
+    </html>
   )
 }
 
